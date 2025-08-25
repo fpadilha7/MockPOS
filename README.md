@@ -148,6 +148,67 @@ com.fpadilha.mockpos/
 3. Sincronize as dependências Gradle
 4. Execute o aplicativo
 
+## 🎨 Build Variants
+
+O projeto possui **3 build variants** configurados, cada um com seu próprio esquema de cores e branding para demonstração de diferentes temas:
+
+### **Variants Disponíveis**
+
+#### **1. RED BANK** 🔴
+- **Cores**: Esquema baseado em vermelho
+- **Application ID**: `com.fpadilha.mockpos.red`
+- **Nome da App**: "RED BANK"
+- **Cores Primárias**: 
+  - Light: `#E60000` (vermelho forte)
+  - Dark: `#FF6666` (vermelho claro intenso)
+
+#### **2. PURPLE BANK** 🟣
+- **Cores**: Esquema baseado em roxo
+- **Application ID**: `com.fpadilha.mockpos.purple`
+- **Nome da App**: "PURPLE BANK"
+- **Cores Primárias**:
+  - Light: `#8A2BE2` (roxo forte)
+  - Dark: `#E066FF` (roxo claro intenso)
+
+#### **3. ORANGE BANK** 🟠
+- **Cores**: Esquema baseado em laranja
+- **Application ID**: `com.fpadilha.mockpos.orange`
+- **Nome da App**: "ORANGE BANK"
+- **Cores Primárias**:
+  - Light: `#FF6600` (laranja forte)
+  - Dark: `#FFB366` (laranja claro intenso)
+
+### **Como Usar as Variants**
+
+#### **No Android Studio:**
+1. Abra o projeto
+2. No painel "Build Variants" (View → Tool Windows → Build Variants)
+3. Selecione o variant desejado
+4. Faça o build e instale no dispositivo
+
+#### **Via Gradle:**
+```bash
+# Build específico
+./gradlew assembleRedDebug      # RED BANK
+./gradlew assemblePurpleDebug   # PURPLE BANK
+./gradlew assembleOrangeDebug   # ORANGE BANK
+
+# Build todos os variants
+./gradlew assembleDebug
+
+# Instalar específico
+./gradlew installRedDebug       # RED BANK
+./gradlew installPurpleDebug    # PURPLE BANK
+./gradlew installOrangeDebug    # ORANGE BANK
+```
+
+### **Características Técnicas**
+- ✅ **Instalação Simultânea**: Cada variant pode ser instalado no mesmo dispositivo
+- ✅ **Tema Unificado**: Um único sistema de tema detecta automaticamente o flavor
+- ✅ **Cores Centralizadas**: Todas as cores definidas em um único local
+- ✅ **BuildConfig**: Constantes específicas geradas automaticamente para cada flavor
+- ✅ **Sem Conflitos**: Resolução automática de cores baseada no flavor ativo
+
 ## 🧪 Testes
 
 ### **Estrutura de Testes**
@@ -156,7 +217,10 @@ src/
 ├── test/                    # Testes unitários
 │   └── java/
 │       └── com/fpadilha/mockpos/
-│           └── ExampleUnitTest.kt
+│           ├── domain/usecase/
+│           │   └── ProcessPaymentUseCaseTest.kt
+│           └── ui/payments/
+│               └── PaymentsViewModelTest.kt
 └── androidTest/             # Testes instrumentados
     └── java/
         └── com/fpadilha/mockpos/
@@ -164,73 +228,28 @@ src/
 ```
 
 ### **Testes Implementados**
-- ✅ Testes unitários básicos
-- ✅ Testes instrumentados básicos
+- ✅ **Testes Unitários**:
+  - `ProcessPaymentUseCaseTest`: Testa a estrutura e criação de resultados de pagamento
+  - `PaymentsViewModelTest`: Testa o estado inicial e operações de estado da UI
+- ✅ **Testes Instrumentados**: Exemplo básico para testes de UI
 
-### **Próximos Passos para Testes**
-- [ ] Testes unitários para ViewModel
-- [ ] Testes unitários para Use Cases
-- [ ] Testes de UI para Compose
-- [ ] Testes de integração
+### **Cobertura de Testes**
+- **Domain Layer**: ✅ ProcessPaymentUseCase (estrutura e tipos)
+- **Presentation Layer**: ✅ PaymentsViewModel (estado e operações)
+- **UI Layer**: 🔄 Testes básicos de instrumentação
 
-## 🔮 Roadmap e Melhorias Futuras
+### **Detalhes dos Testes Unitários**
 
-### **Curto Prazo**
-- [ ] Implementar persistência local com Room
-- [ ] Adicionar validação de formato de valor
-- [ ] Implementar histórico de transações
-- [ ] Adicionar animações e transições
+#### **ProcessPaymentUseCaseTest**
+- **Teste 1**: Verifica se a instância do UseCase é criada corretamente
+- **Teste 2**: Valida a estrutura dos tipos `PaymentResult.Approved` e `PaymentResult.Declined`
+- **Foco**: Estrutura de dados e tipos, sem dependências de coroutines
 
-### **Médio Prazo**
-- [ ] Integração com APIs de pagamento reais
-- [ ] Sistema de usuários e autenticação
-- [ ] Relatórios e analytics
-- [ ] Múltiplas moedas
-
-### **Longo Prazo**
-- [ ] Versão web com Compose Multiplatform
-- [ ] Integração com sistemas ERP
-- [ ] Machine Learning para detecção de fraudes
-- [ ] Suporte offline completo
-
-## 📚 Padrões e Boas Práticas
-
-### **Código**
-- **Kotlin First**: Uso de recursos nativos do Kotlin
-- **Immutabilidade**: Preferência por dados imutáveis
-- **Null Safety**: Uso de tipos não-nulos quando possível
-- **Extension Functions**: Para funcionalidades específicas
-
-### **UI/UX**
-- **Material Design 3**: Seguindo guidelines oficiais
-- **Responsividade**: Interface adaptável a diferentes tamanhos
-- **Acessibilidade**: Suporte a leitores de tela
-- **Feedback Visual**: Estados claros e informativos
-
-### **Performance**
-- **Lazy Loading**: Composables carregados sob demanda
-- **State Hoisting**: Estado gerenciado no nível apropriado
-- **Recomposition**: Minimização de recomposições desnecessárias
-- **Memory Management**: Uso adequado de remember e derivedStateOf
-
-## 🤝 Contribuição
-
-### **Padrões de Commit**
-- `feat:` Nova funcionalidade
-- `fix:` Correção de bug
-- `docs:` Documentação
-- `style:` Formatação de código
-- `refactor:` Refatoração
-- `test:` Adição de testes
-
-### **Code Review**
-- Todas as mudanças devem passar por review
-- Testes devem ser incluídos para novas funcionalidades
-- Documentação deve ser atualizada quando necessário
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+#### **PaymentsViewModelTest**
+- **Teste 1**: Verifica valores padrão do estado inicial (`PaymentsUiState`)
+- **Teste 2**: Testa reset de estado para nova venda
+- **Teste 3**: Valida limpeza de erros do estado
+- **Foco**: Operações de estado e comportamento do data class
 
 ## 👨‍💻 Autor
 

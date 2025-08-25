@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">MockPos</string>
+    <string name="payment_title">Pagamento</string>
+    <string name="transaction_value_label">Valor da Transação</string>
+    <string name="transaction_value_placeholder">R$ 0,00</string>
+    <string name="payment_method_label">Método de Pagamento</string>
+    <string name="credit_button">Crédito</string>
+    <string name="debit_button">Débito</string>
+    <string name="process_payment_button">Realizar Pagamento</string>
+    <string name="processing_text">Processando...</string>
+    <string name="approved_text">Aprovada</string>
+    <string name="declined_text">Recusada</string>
+    <string name="amount_label">Valor: %s</string>
+    <string name="method_label">Método: %s</string>
+    <string name="start_new_sale_button">Iniciar Nova Venda</string>
+    <string name="error_title">Erro</string>
+    <string name="ok_button">OK</string>
+</resources>

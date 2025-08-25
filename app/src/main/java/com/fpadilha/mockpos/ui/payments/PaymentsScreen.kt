@@ -32,30 +32,35 @@ fun PaymentsScreen(
     ) {
         Spacer(modifier = Modifier.height(32.dp))
         
-        // Título da página
+        Text(
+            text = viewModel.appName.uppercase(),
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.primary
+        )
+        
+        Spacer(modifier = Modifier.height(2.dp))
+        
         Text(
             text = stringResource(R.string.payment_title),
             style = MaterialTheme.typography.headlineLarge
         )
         
-        // Campo para valor da transação
         OutlinedTextField(
             value = transactionValue,
             onValueChange = { transactionValue = it },
             label = { Text(stringResource(R.string.transaction_value_label)) },
             placeholder = { Text(stringResource(R.string.transaction_value_placeholder)) },
             modifier = Modifier.fillMaxWidth(),
+            maxLines = 1,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             enabled = !uiState.isLoading
         )
         
-        // Texto método de pagamento
         Text(
             text = stringResource(R.string.payment_method_label),
             style = MaterialTheme.typography.titleMedium
         )
         
-        // Botões para método de pagamento
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -92,7 +97,6 @@ fun PaymentsScreen(
             }
         }
         
-        // Botão realizar pagamento
         Button(
             onClick = { 
                 viewModel.processPayment(transactionValue, selectedPaymentMethod)
@@ -113,7 +117,6 @@ fun PaymentsScreen(
         }
     }
     
-    // Dialog de resultado
     if (uiState.showResult && uiState.paymentResult != null) {
         PaymentResultDialog(
             result = uiState.paymentResult!!,
@@ -125,7 +128,6 @@ fun PaymentsScreen(
         )
     }
     
-    // Dialog de erro
     if (uiState.error != null) {
         AlertDialog(
             onDismissRequest = { viewModel.clearError() },

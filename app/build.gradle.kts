@@ -25,8 +25,36 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    flavorDimensions += "theme"
+    
+    productFlavors {
+        create("red") {
+            dimension = "theme"
+            applicationIdSuffix = ".red"
+            versionNameSuffix = "-RED"
+            buildConfigField("String", "FLAVOR", "\"red\"")
+            buildConfigField("String", "THEME_COLOR", "\"red\"")
+        }
+        create("purple") {
+            dimension = "theme"
+            applicationIdSuffix = ".purple"
+            versionNameSuffix = "-PURPLE"
+            buildConfigField("String", "FLAVOR", "\"purple\"")
+            buildConfigField("String", "THEME_COLOR", "\"purple\"")
+        }
+        create("orange") {
+            dimension = "theme"
+            applicationIdSuffix = ".orange"
+            versionNameSuffix = "-ORANGE"
+            buildConfigField("String", "FLAVOR", "\"orange\"")
+            buildConfigField("String", "THEME_COLOR", "\"orange\"")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -36,6 +64,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

@@ -2,6 +2,7 @@ package com.fpadilha.mockpos.ui.payments
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fpadilha.mockpos.BuildConfig
 import com.fpadilha.mockpos.domain.usecase.ProcessPaymentUseCase
 import com.fpadilha.mockpos.domain.usecase.PaymentResult
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,6 +16,9 @@ class PaymentsViewModel : ViewModel() {
     
     private val _uiState = MutableStateFlow(PaymentsUiState())
     val uiState: StateFlow<PaymentsUiState> = _uiState.asStateFlow()
+    
+    val appName: String
+        get() = BuildConfig.FLAVOR + " BANK"
     
     fun processPayment(amount: String, paymentMethod: String) {
         if (amount.isEmpty() || paymentMethod.isEmpty()) return

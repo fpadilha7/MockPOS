@@ -223,17 +223,13 @@ src/
 │           │   └── ProcessPaymentUseCaseTest.kt
 │           └── ui/payments/
 │               └── PaymentsViewModelTest.kt
-└── androidTest/             # Testes instrumentados
-    └── java/
-        └── com/fpadilha/mockpos/
-            └── ExampleInstrumentedTest.kt
+└──
 ```
 
 ### **Testes Implementados**
 - ✅ **Testes Unitários**:
   - `ProcessPaymentUseCaseTest`: Testa a estrutura e criação de resultados de pagamento
   - `PaymentsViewModelTest`: Testa o estado inicial e operações de estado da UI
-- ✅ **Testes Instrumentados**: Exemplo básico para testes de UI
 
 ### **Cobertura de Testes**
 - **Domain Layer**: ✅ ProcessPaymentUseCase (estrutura e tipos)

@@ -4,6 +4,8 @@
 
 O **MockPos** é um aplicativo Android que simula um sistema POS (Point of Sale) para demonstração e desenvolvimento. O projeto implementa um fluxo completo de pagamento com interface moderna usando Jetpack Compose.
 
+![Image](https://github.com/user-attachments/assets/ec291fa5-cd6a-43cd-aed8-54a20405499b)
+
 ## 🏗️ Arquitetura do Projeto
 
 ### **Padrão Arquitetural: MVVM + Clean Architecture**
